@@ -269,7 +269,7 @@ class MenuItemDetailScreen extends StatelessWidget {
       child:Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
                          menuItem.imagem,
@@ -292,6 +292,14 @@ class MenuItemDetailScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                         minimumSize: Size(155, 65),
+                         backgroundColor:
+                          const Color.fromARGB(255, 94, 28, 16),
+                        foregroundColor:
+                           Colors.white,
+                        textStyle: TextStyle(fontSize: 25),
+                ),
               onPressed: () {
                 // Adiciona o item ao carrinho
                 cart.addItem(menuItem);
@@ -338,7 +346,7 @@ class _CartScreenState extends State<CartScreen> {
         title: Text('Carrinho de Compras',
                     style: TextStyle(color: Colors.white)),
                 centerTitle: true,
-                backgroundColor: const Color.fromARGB(255, 16, 46, 23),
+                backgroundColor: const Color.fromARGB(255, 96, 28, 16),
         leading: IconButton(
           icon: Icon(Icons.arrow_back,color: Colors.white,),
           onPressed: () {
@@ -350,7 +358,7 @@ class _CartScreenState extends State<CartScreen> {
       body: Container(
                    decoration: BoxDecoration(
                      image: DecorationImage(
-                       image: AssetImage('lib/images/Cor_fundo.jpg'), // Imagem de fundo
+                       image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
                        fit: BoxFit.cover,
                      ),
           ), 
@@ -358,7 +366,7 @@ class _CartScreenState extends State<CartScreen> {
       child:Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start, 
           children: [
             Text(
               'Itens no Carrinho:',
@@ -373,7 +381,7 @@ class _CartScreenState extends State<CartScreen> {
                     title: Text(item.name),
                     subtitle: Text('R\$ ${item.price.toStringAsFixed(2)}'),
                     trailing: IconButton(
-                      icon: Icon(Icons.remove_circle),
+                      icon: Icon(Icons.remove_circle, color: const Color.fromARGB(255, 96, 28, 16),),
                       onPressed: () {
                         setState(() {
                           widget.cart.removeItem(item);
@@ -393,6 +401,14 @@ class _CartScreenState extends State<CartScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                         minimumSize: Size(155, 65),
+                         backgroundColor:
+                          const Color.fromARGB(255, 94, 28, 16),
+                        foregroundColor:
+                           Colors.white,
+                        textStyle: TextStyle(fontSize: 25),
+                ),
               onPressed: widget.cart.items.isNotEmpty ? _placeOrder : null,
               child: Text('Fazer Pedido'),
             ),

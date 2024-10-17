@@ -51,6 +51,7 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                
                                 Text('Escolha o método de recebimento do código'),
                               ],
                             ),
@@ -58,6 +59,7 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
+                                
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: Size(155, 65),

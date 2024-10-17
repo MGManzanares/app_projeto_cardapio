@@ -25,9 +25,18 @@ class _NovaSenhaViewState extends State<NovaSenhaView> {
                 title:
                     Text('CRIAR NOVA SENHA', style: TextStyle(color: Colors.white)),
                 centerTitle: true,
-                backgroundColor: const Color.fromARGB(255, 8, 54, 160)),
-                backgroundColor: Colors.grey,
-            body: Padding(
+                backgroundColor: const Color.fromARGB(255, 94, 28, 16)
+                ),
+                
+            body: Container(
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+                       fit: BoxFit.cover,
+                     ),
+          ), 
+        child: Center(
+        child:Padding(
                 padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
                 child: Form(
                     key: formkey,
@@ -37,14 +46,14 @@ class _NovaSenhaViewState extends State<NovaSenhaView> {
                         children: [
                            Icon(Icons.security_rounded,
                                 size: 200,
-                                color: Colors.amber),
+                                color: const Color.fromARGB(255, 94, 28, 16)),
                                 SizedBox(height: 115),
                       TextFormField(
                             controller: txtValor1,
                             decoration: InputDecoration(
                               labelText: 'Escreva a nova senha:',
                               labelStyle: TextStyle(
-                                  color: Colors.white),
+                                  color: Colors.black),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -66,7 +75,7 @@ class _NovaSenhaViewState extends State<NovaSenhaView> {
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: Size(320, 65),
                                     backgroundColor:
-                                        const Color.fromARGB(255, 8, 54, 160),
+                                        const Color.fromARGB(255, 94, 28, 16),
                                     foregroundColor:
                                         Colors.white,
                                     textStyle: TextStyle(fontSize: 25),
@@ -90,7 +99,7 @@ class _NovaSenhaViewState extends State<NovaSenhaView> {
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(320, 65),
-                                  backgroundColor: const Color.fromARGB(255, 8, 54, 160),
+                                  backgroundColor: const Color.fromARGB(255, 94, 28, 16),
                                   foregroundColor: Colors.white,
                                   textStyle: TextStyle(fontSize: 25),
                                 ),
@@ -109,6 +118,8 @@ class _NovaSenhaViewState extends State<NovaSenhaView> {
                 )
               )
             )
-      );
+        ),
+      ),
+    );
   }
 }

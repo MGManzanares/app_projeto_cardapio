@@ -28,7 +28,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'cardapio',
+      initialRoute: 'login',
       routes: {
         'login': (context) =>Login_App(),
         'criar_conta': (context) => CriarContaView(),
