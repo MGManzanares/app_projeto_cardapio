@@ -2,8 +2,8 @@ Projeto desenvolvido para a disciplina de Programação para Dispositivos Moveis
 
 Login de acesso:
 
-Email: Gordao@gordoadm.com
-Senha: gordo123
+Email: murilo@fatec.com
+Senha: senha123
 
 
 Desenvolvido por:
