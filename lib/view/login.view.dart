@@ -1,5 +1,9 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, camel_case_types, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+
+import 'cardapio_view.dart';
+
+
 
 class Login_App extends StatefulWidget {
   const Login_App({super.key});
@@ -9,142 +13,234 @@ class Login_App extends StatefulWidget {
 }
 
 class _Login_AppState extends State<Login_App> {
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final msgKey = GlobalKey<ScaffoldMessengerState>();
-  var txtValor1 = TextEditingController();
-  var txtValor2 = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  
+  void _validateForm() {
+    if (_formKey.currentState!.validate()) {
+      const String emailValido = 'Gordao@gordoadm.com';
+      const String senhaValida = 'gordo123';
+
+      if (_emailController.text == emailValido && _senhaController.text == senhaValida) {
+        Navigator.push(context,
+         MaterialPageRoute(builder: 
+         (context) => CardapioView()
+         ),
+        );
+      } else {
+        
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('E-mail ou senha incorretos.'),
+          duration: Duration(seconds: 5),
+          backgroundColor: Colors.black,
+        ),
+      );
+    }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Favor informar dados válidos!',
+          style: TextStyle(fontSize: 14, color: Colors.red),
+          ),          
+          duration: Duration(seconds: 5),
+          backgroundColor: Colors.black,
+          ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        scaffoldMessengerKey: msgKey,
+        
         home: Scaffold(
             appBar: AppBar(
                 title: Text('5 IRMÃOS LANCHES',
-                    style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: Colors.white)),
                 centerTitle: true,
-                backgroundColor: const Color.fromARGB(255, 46, 23, 22)),
-            backgroundColor: Colors.amber,
-              body: Padding(
-                
-                    padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
-                    child: Form(
-                        key: formkey,
-                        child: Column(
-                          children: [
-                            Icon(Icons.account_circle_rounded,
-                                size: 200,
-                                color: const Color.fromARGB(255, 188, 45, 2)),
-                            SizedBox(height: 20),
-                            TextFormField(
-                              controller: txtValor1,
-                              decoration: InputDecoration(
-                                labelText: 'Informe seu e-mail',
-                                labelStyle: TextStyle(
-                                    color: Colors.black),
-                          border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value == null) {
-                                  return 'Informe um valor';
-                                } else if (value.isEmpty) {
-                                  return 'Informe um valor';
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(height: 20),
-                            TextFormField(
-                              controller: txtValor2,
-                              decoration: InputDecoration(
-                                  labelText: 'Informe sua senha:',
-                                  labelStyle: TextStyle(
-                                      color: Colors.black),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  )),
-                              validator: (value) {
-                                if (value == null) {
-                                  return 'Informe um valor';
-                                } else if (value.isEmpty) {
-                                  return 'Informe um valor';
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                TextButton(
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: Size(100, 60),
-                                    backgroundColor: Colors.amber,
-                                    foregroundColor:
-                                         const Color.fromARGB(255, 63, 13, 6),
-                                    textStyle: TextStyle(fontSize: 20),
-                                  ),
-                                  onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, 'esqueceu_senha');
-                                  },
-                                  child: Text('esqueceu a senha?'),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(198, 65),
-                                    backgroundColor:
-                                        const Color.fromARGB(255, 109, 28, 16),
-                                    foregroundColor:
-                                        Colors.white,
-                                    textStyle: TextStyle(fontSize: 25),
-                                  ),
-                                  onPressed: () {
-                                    if (formkey.currentState!.validate()) {
-                                      Navigator.pushNamed(context, 'cardapio');
-                                    }
-                                  },
-                                  child: Text('Entrar'),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(155, 65),
-                                    backgroundColor:
-                                        const Color.fromARGB(255, 109, 28, 16),
-                                    foregroundColor:
-                                        Colors.white,
-                                    textStyle: TextStyle(fontSize: 25),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, 'criar_conta');
-                                  },
-                                  child: Text('Cadastrar-se'),
-                                ),
-                              ],
-                            )
-                          ],
-                        ))),
-              ));
+                backgroundColor: const Color.fromARGB(255, 94, 28, 16)),
+            //backgroundColor: const Color.fromARGB(255, 221, 170, 16),
+              body:Container(
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+                       fit: BoxFit.cover,
+                     ),
+          ), 
+    child: Center(
+      child:Padding(      
+        padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
+          child: Form(
+            key: _formKey,
+            child: Column(
+            children: [
+              
+              Image.asset(
+                         'lib/images/logo1.png',
+                         height: 200, 
+                        width: 250,),
+              SizedBox(height: 50),
+              TextFormField(
+                controller: _emailController,
+                autofocus: true,
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(fontSize: 18, color: Colors.black),
+                decoration: InputDecoration(
+                  labelText: 'Login: ',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 10, 53, 224),
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira seu e-mail.';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: _senhaController,
+                autofocus: true,
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                style: TextStyle(fontSize: 18, color: Colors.black),
+                decoration: InputDecoration(
+                  labelText: 'Senha: ',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 10, 53, 224),
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira sua senha.';
+                  }
+                  return null;
+                },
+              ),
+              Container(
+                height: 40,
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => {Navigator.pushNamed(context, 'esqueceu_senha')},
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.black,
+                  ),
+                  child: Text(
+                    "Recuperar Senha",
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+              ),
+              SizedBox(height: 40),
+              Container(
+                height: 50,
+                alignment: Alignment.centerLeft,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    stops: [0.3, 1],
+                    colors: [
+                      Color.fromARGB(255, 96, 28, 16),
+                      Color.fromARGB(255, 94, 27, 12),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
+                  ),
+                ),
+                child: SizedBox.expand(
+                  child: TextButton(
+                    onPressed: _validateForm,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Entrar",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                height: 50,
+                alignment: Alignment.centerLeft,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    stops: [0.3, 1],
+                    colors: [
+                      Color.fromARGB(255, 96, 28, 16),
+                      Color.fromARGB(255, 94, 27, 12),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
+                  ),
+                ),
+                child: SizedBox.expand(
+                  child: TextButton(
+                    onPressed: () => {Navigator.pushNamed(context, 'criar_conta')},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Cadastrar",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    ),),);
   }
 }

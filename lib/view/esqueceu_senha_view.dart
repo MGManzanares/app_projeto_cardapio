@@ -23,10 +23,18 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
         home: Scaffold(
             appBar: AppBar(
                 title:
-                    Text('MUDAR SENHA', style: TextStyle(color: Colors.white)),
+                    Text('RECUPERAR SENHA', style: TextStyle(color: Colors.white)),
                 centerTitle: true,
-                backgroundColor: const Color.fromARGB(255, 28, 88, 36)),
-            body: Padding(
+                backgroundColor: const Color.fromARGB(255, 94, 28, 16)),
+            body: Container(
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+                       fit: BoxFit.cover,
+                     ),
+          ), 
+            child: Center(
+             child:Padding(
                 padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
                 child: Form(
                     key: formkey,
@@ -34,13 +42,11 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                       scrollDirection: Axis.vertical,
                       child: Column(
                         children: [
-                          CircleAvatar(
-                            radius: 100,
-                            child: Icon(Icons.question_mark_sharp,
-                                size: 200,
-                                color: const Color.fromARGB(255, 188, 45, 2)
-                                ),
-                      ),
+                          Image.asset(
+                            'lib/images/logo1.png',
+                             height: 200, 
+                             width: 250,),
+                          
                             SizedBox(height: 25),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -56,10 +62,10 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: Size(155, 65),
                                     backgroundColor:
-                                        Colors.red,
+                                        const Color.fromARGB(255, 94, 28, 16),
                                     foregroundColor:
                                         Colors.white,
-                                    textStyle: TextStyle(fontSize: 25),
+                                    textStyle: TextStyle(fontSize: 25), 
                                   ),
                                   onPressed: () {
                                     msgKey.currentState!.showSnackBar(
@@ -73,7 +79,7 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: Size(155, 65),
                                     backgroundColor:
-                                        Colors.red,
+                                        const Color.fromARGB(255, 94, 28, 16),
                                     foregroundColor:
                                         Colors.white,
                                     textStyle: TextStyle(fontSize: 25),
@@ -120,7 +126,7 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(320, 65),
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: const Color.fromARGB(255, 94, 28, 16),
                                   foregroundColor: Colors.white,
                                   textStyle: TextStyle(fontSize: 25),
                                 ),
@@ -139,6 +145,8 @@ class _EsqeceuSenhaViewState extends State<EsqeceuSenhaView> {
                 )
               )
             )
-      );
+      ),
+    ),
+   );
   }
 }

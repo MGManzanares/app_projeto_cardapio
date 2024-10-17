@@ -35,6 +35,7 @@ class _MainAppState extends State<MainApp> {
         'cardapio': (context) => CardapioView(),
         'esqueceu_senha': (context) => EsqeceuSenhaView(),
         'nova_senha': (context) => NovaSenhaView(),
+        
       }
     );
   }

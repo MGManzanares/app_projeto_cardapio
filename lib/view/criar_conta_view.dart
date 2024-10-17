@@ -30,8 +30,16 @@ class _CriarContaViewState extends State<CriarContaView> {
                 title:
                     Text('CRIAR CONTA', style: TextStyle(color: Colors.white)),
                 centerTitle: true,
-                backgroundColor: Colors.grey),
-            body: Padding(
+                backgroundColor: const Color.fromARGB(255, 94, 28, 16)),
+            body:Container(
+                   decoration: BoxDecoration(
+                     image: DecorationImage(
+                       image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+                       fit: BoxFit.cover,
+                     ),
+          ), 
+            child: Center(
+             child: Padding(
                 padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
                 child: Form(
                     key: formkey,
@@ -39,22 +47,18 @@ class _CriarContaViewState extends State<CriarContaView> {
                       scrollDirection: Axis.vertical,
                       child: Column(
                         children: [
-                          CircleAvatar(
-                            radius: 100,
-                            backgroundColor: const Color.fromARGB(255, 214, 214, 214),
-                            child: Icon(
-                              Icons.photo_camera_rounded,
-                              size: 100,
-                              color: Colors.black,
-                            ),
-                          ),
+                          Image.asset(
+                         'lib/images/logo1.png',
+                         height: 200, 
+                         width: 250,),
+                          
                           SizedBox(height: 5),
                           TextFormField(
                             controller: txtValor1,
                             decoration: InputDecoration(
                               labelText: 'Nome de usuário',
                               labelStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 81, 2, 2)),
+                                  color: const Color.fromARGB(255, 96, 28, 16)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -74,7 +78,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                             decoration: InputDecoration(
                                 labelText: 'Informe seu email:',
                                 labelStyle: TextStyle(
-                                    color: const Color.fromARGB(255, 81, 2, 2)),
+                                    color: const Color.fromARGB(255, 96, 28, 16)),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 )),
@@ -95,7 +99,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                             decoration: InputDecoration(
                               labelText: 'Informe sua senha',
                               labelStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 81, 2, 2)),
+                                  color: const Color.fromARGB(255, 96, 28, 16)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -115,7 +119,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                             decoration: InputDecoration(
                               labelText: 'Confirmar senha',
                               labelStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 81, 2, 2)),
+                                  color: const Color.fromARGB(255, 96, 28, 16)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -135,7 +139,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                             decoration: InputDecoration(
                               labelText: 'Endereço',
                               labelStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 81, 2, 2)),
+                                  color: const Color.fromARGB(255, 96, 28, 16)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -155,7 +159,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                             decoration: InputDecoration(
                               labelText: 'Telefone',
                               labelStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 81, 2, 2)),
+                                  color: const Color.fromARGB(255, 96, 28, 16)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -181,7 +185,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(320, 65),
                                   backgroundColor:
-                                      const Color.fromARGB(255, 180, 10, 10),
+                                      const Color.fromARGB(255, 96, 28, 16),
                                   foregroundColor: Colors.white,
                                   textStyle: TextStyle(fontSize: 25),
                                 ),
@@ -207,7 +211,7 @@ class _CriarContaViewState extends State<CriarContaView> {
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(320, 65),
                                   backgroundColor:
-                                      const Color.fromARGB(255, 180, 10, 10),
+                                      const Color.fromARGB(255, 96, 28, 16),
                                   foregroundColor: Colors.white,
                                   textStyle: TextStyle(fontSize: 25),
                                 ),
@@ -224,6 +228,8 @@ class _CriarContaViewState extends State<CriarContaView> {
               )
            )
         )
-     );
+     ),
+    ),
+   );
   }
 }
