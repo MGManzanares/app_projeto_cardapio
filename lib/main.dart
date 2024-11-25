@@ -6,13 +6,21 @@ import 'package:app_projeto_cardapio/view/login.view.dart';
 import 'package:app_projeto_cardapio/view/nova_senha_view.dart';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(DevicePreview(
-        enabled: true,
-        builder: (contex) => MainApp(),
-  )
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Necessário antes de inicializar o Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    DevicePreview(
+      enabled: true, // Certifique-se de que está ativado para visualização
+      builder: (context) => MainApp(), // Passe o context correto
+    ),
   );
 }
 
@@ -31,7 +39,7 @@ class _MainAppState extends State<MainApp> {
       initialRoute: 'login',
       routes: {
         'login': (context) =>Login_App(),
-        'criar_conta': (context) => CriarContaView(),
+        'criar_conta': (context) => CadastrarView(),
         'cardapio': (context) => CardapioView(),
         'esqueceu_senha': (context) => EsqeceuSenhaView(),
         'nova_senha': (context) => NovaSenhaView(),

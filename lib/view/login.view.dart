@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, camel_case_types, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, unused_import
+import 'package:app_projeto_cardapio/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'cardapio_view.dart';
@@ -13,43 +14,15 @@ class Login_App extends StatefulWidget {
 }
 
 class _Login_AppState extends State<Login_App> {
-  final _formKey = GlobalKey<FormState>();
-  final msgKey = GlobalKey<ScaffoldMessengerState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _senhaController = TextEditingController();
-  
-  void _validateForm() {
-    if (_formKey.currentState!.validate()) {
-      const String emailValido = 'Gordao@gordoadm.com';
-      const String senhaValida = 'gordo123';
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+  var txtEmailEsqueceuSenha = TextEditingController();
 
-      if (_emailController.text == emailValido && _senhaController.text == senhaValida) {
-        Navigator.push(context,
-         MaterialPageRoute(builder: 
-         (context) => CardapioView()
-         ),
-        );
-      } else {
-        
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('E-mail ou senha incorretos.'),
-          duration: Duration(seconds: 5),
-          backgroundColor: Colors.black,
-        ),
-      );
-    }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Favor informar dados válidos!',
-          style: TextStyle(fontSize: 14, color: Colors.red),
-          ),          
-          duration: Duration(seconds: 5),
-          backgroundColor: Colors.black,
-          ),
-      );
-    }
+  @override
+  void initState() {
+   // txtEmail.text = 'joao@email.com';
+   // txtSenha.text = '123456';
+    super.initState();
   }
 
   @override
@@ -75,7 +48,6 @@ class _Login_AppState extends State<Login_App> {
       child:Padding(      
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
           child: Form(
-            key: _formKey,
             child: Column(
             children: [
               
@@ -85,7 +57,6 @@ class _Login_AppState extends State<Login_App> {
                         width: 250,),
               SizedBox(height: 50),
               TextFormField(
-                controller: _emailController,
                 autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 style: TextStyle(fontSize: 18, color: Colors.black),
@@ -116,7 +87,6 @@ class _Login_AppState extends State<Login_App> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                controller: _senhaController,
                 autofocus: true,
                 obscureText: true,
                 keyboardType: TextInputType.text,
@@ -161,86 +131,65 @@ class _Login_AppState extends State<Login_App> {
                 ),
               ),
               SizedBox(height: 40),
-              Container(
-                height: 50,
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [
-                      Color.fromARGB(255, 96, 28, 16),
-                      Color.fromARGB(255, 94, 27, 12),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-                child: SizedBox.expand(
-                  child: TextButton(
-                    onPressed: _validateForm,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Entrar",
-                          style: TextStyle(
+               ElevatedButton(
+                           style: ElevatedButton.styleFrom(
+                              minimumSize:  Size(320, 65), 
+                              foregroundColor: Colors.white, 
+                              backgroundColor: const Color.fromARGB(255, 96, 28, 16),
+                              textStyle: TextStyle(fontSize: 25),
+                              
+
+                            ),
+
+                            
+                           onPressed: () {
+                                        //
+                             // TO-DO: Login
+                             //
+                             LoginController().login(
+                               context,
+                               txtEmail.text,
+                               txtSenha.text,
+                             );
+                            },
+                            child: Text('Entrar',
+                            style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 16,
+                          ),),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
               SizedBox(height: 20),
-              Container(
-                height: 50,
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [
-                      Color.fromARGB(255, 96, 28, 16),
-                      Color.fromARGB(255, 94, 27, 12),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-                child: SizedBox.expand(
-                  child: TextButton(
-                    onPressed: () => {Navigator.pushNamed(context, 'criar_conta')},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Cadastrar",
-                          style: TextStyle(
+              ElevatedButton(
+                           style: ElevatedButton.styleFrom(
+                              minimumSize:  Size(320, 65), 
+                              foregroundColor: Colors.white, 
+                              backgroundColor: const Color.fromARGB(255, 96, 28, 16),
+                              textStyle: TextStyle(fontSize: 25),
+                              
+
+                            ),
+
+                            
+                           onPressed: () {
+                             Navigator.pushNamed(context, 'criar_conta');
+                            },
+                            child: Text('Cadastar',
+                            style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 16,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+                          ),
+                       ),
+             ],
+            ),
+           ),
+         ),
         ),
-      ),
-    ),
-    ),),);
+       ),
+     ),
+    
+   );
   }
 }
