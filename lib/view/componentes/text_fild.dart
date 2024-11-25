@@ -9,7 +9,9 @@ Widget campoTexto(label, controller, icone, {senha}) {
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(icone),
-        border: const OutlineInputBorder(),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50),
+        ),
       ),
     ),
   );

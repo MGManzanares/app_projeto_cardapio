@@ -3,7 +3,6 @@ import 'package:app_projeto_cardapio/view/cardapio_view.dart';
 import 'package:app_projeto_cardapio/view/criar_conta_view.dart';
 import 'package:app_projeto_cardapio/view/esqueceu_senha_view.dart';
 import 'package:app_projeto_cardapio/view/login.view.dart';
-import 'package:app_projeto_cardapio/view/nova_senha_view.dart';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,7 +41,7 @@ class _MainAppState extends State<MainApp> {
         'criar_conta': (context) => CadastrarView(),
         'cardapio': (context) => CardapioView(),
         'esqueceu_senha': (context) => EsqeceuSenhaView(),
-        'nova_senha': (context) => NovaSenhaView(),
+        
         
       }
     );
