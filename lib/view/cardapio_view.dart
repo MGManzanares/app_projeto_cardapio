@@ -1,11 +1,10 @@
-// ignore_for_file: use_key_in_widget_constructors
-
 import 'package:app_projeto_cardapio/service/cardapio_service.dart';
 import 'acompanhamentos_view.dart';
 import 'package:app_projeto_cardapio/view/bebidas_view.dart';
 import 'package:app_projeto_cardapio/view/carrinho_view.dart';
 import 'package:app_projeto_cardapio/view/lanches_view.dart';
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(CardapioView());
 }
@@ -44,28 +43,47 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildCategoryButton(context, 'Lanches', LanchesView(cart: cart)),
-            _buildCategoryButton(context, 'Bebidas', BebidasView(cart: cart)),
-            _buildCategoryButton(
-                context, 'Acompanhamentos', AcompanhamentosView(cart: cart)),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  // Logo
+                  Image.asset(
+                    'lib/images/logo1.png',
+                    height: 200,
+                    width: 250,
+                  ),
+                  SizedBox(height: 20),
+                  _buildCategoryButton(context, 'Lanches', LanchesView(cart: cart)),
+                  _buildCategoryButton(context, 'Bebidas', BebidasView(cart: cart)),
+                  _buildCategoryButton(
+                      context, 'Acompanhamentos', AcompanhamentosView(cart: cart)),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildCategoryButton(
-      BuildContext context, String title, Widget screen) {
+  Widget _buildCategoryButton(BuildContext context, String title, Widget screen) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           minimumSize: Size(200, 50),
-          backgroundColor: Colors.amber
+          backgroundColor: Colors.amber,
         ),
         onPressed: () {
           Navigator.push(
@@ -73,8 +91,10 @@ class HomeScreen extends StatelessWidget {
             MaterialPageRoute(builder: (context) => screen),
           );
         },
-        child: Text(title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+        child: Text(
+          title,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
       ),
     );
   }

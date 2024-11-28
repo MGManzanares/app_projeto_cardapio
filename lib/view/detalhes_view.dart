@@ -18,23 +18,84 @@ class DetalhesView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 96, 28, 16),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Image.asset(menuItem.imagem, height: 300, fit: BoxFit.cover),
-            Text(menuItem.description),
-            Text('Preço: R\$ ${menuItem.price.toStringAsFixed(2)}'),
-            ElevatedButton(
-              onPressed: () {
-                cart.addItem(menuItem);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${menuItem.name} adicionado ao carrinho!')),
-                );
-              },
-              child: Text('Adicionar ao Carrinho'),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center, // Centraliza verticalmente
+                crossAxisAlignment: CrossAxisAlignment.center, // Centraliza horizontalmente
+                children: [
+                  // Imagem do item
+                  Card(
+                    elevation: 5,
+                    color: Colors.white.withOpacity(0.9),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        menuItem.imagem,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+
+                  // Descrição
+                  Text(
+                    menuItem.description,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white, // Contraste para o fundo
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 10),
+
+                  // Preço
+                  Text(
+                    'Preço: R\$ ${menuItem.price.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+
+                  // Botão "Adicionar ao Carrinho"
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(200, 50),
+                      backgroundColor: const Color.fromARGB(255, 96, 28, 16),
+                    ),
+                    onPressed: () {
+                      cart.addItem(menuItem);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${menuItem.name} adicionado ao carrinho!'),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Adicionar ao Carrinho',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ],
+          ),
         ),
       ),
     );
