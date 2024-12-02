@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
+import 'package:app_projeto_cardapio/controller/itens_controller.dart';
 import 'package:app_projeto_cardapio/view/cardapio_view.dart';
 import 'package:app_projeto_cardapio/view/criar_conta_view.dart';
 import 'package:app_projeto_cardapio/view/esqueceu_senha_view.dart';
@@ -11,10 +12,11 @@ import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Necessário antes de inicializar o Firebase
+  //WidgetsFlutterBinding.ensureInitialized(); // Necessário antes de inicializar o Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseService().inicializarDados();
   runApp(
     DevicePreview(
       enabled: true, // Certifique-se de que está ativado para visualização
@@ -23,14 +25,10 @@ Future<void> main() async {
   );
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  @override
-  State<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

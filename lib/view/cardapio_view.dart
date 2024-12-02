@@ -5,9 +5,6 @@ import 'package:app_projeto_cardapio/view/carrinho_view.dart';
 import 'package:app_projeto_cardapio/view/lanches_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(CardapioView());
-}
 
 class CardapioView extends StatelessWidget {
   @override
