@@ -1,25 +1,28 @@
 import 'package:app_projeto_cardapio/service/cardapio_service.dart';
-import 'acompanhamentos_view.dart';
+import 'package:app_projeto_cardapio/view/acompanhamentos_view.dart';
 import 'package:app_projeto_cardapio/view/bebidas_view.dart';
 import 'package:app_projeto_cardapio/view/carrinho_view.dart';
 import 'package:app_projeto_cardapio/view/lanches_view.dart';
 import 'package:flutter/material.dart';
 
-
 class CardapioView extends StatelessWidget {
+  final Cart cart = Cart(); // Instância de Cart compartilhada
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Cardápio',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: HomeScreen(),
+      home: HomeScreen(cart: cart), // Passa o Cart para a HomeScreen
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
-  final Cart cart = Cart(); // Carrinho compartilhado
+  final Cart cart;
+
+  HomeScreen({required this.cart}); // Recebe o Cart como parâmetro
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart, color: Colors.white),
             onPressed: () {
+              // Navega para a tela do Carrinho
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CarrinhoView(cart: cart)),
@@ -43,7 +47,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+            image: AssetImage('lib/images/cor.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -51,20 +55,19 @@ class HomeScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
               child: Column(
                 children: [
                   // Logo
                   Image.asset(
-                    'lib/images/logo1.png',
+                    'lib/images/logo1.png', 
                     height: 200,
                     width: 250,
                   ),
                   SizedBox(height: 20),
+                  // Botões para categorias
                   _buildCategoryButton(context, 'Lanches', LanchesView(cart: cart)),
                   _buildCategoryButton(context, 'Bebidas', BebidasView(cart: cart)),
-                  _buildCategoryButton(
-                      context, 'Acompanhamentos', AcompanhamentosView(cart: cart)),
+                  _buildCategoryButton(context, 'Acompanhamentos', AcompanhamentosView(cart: cart)),
                 ],
               ),
             ),
@@ -83,6 +86,7 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.amber,
         ),
         onPressed: () {
+          // Navega para a tela da categoria
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => screen),

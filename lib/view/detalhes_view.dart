@@ -1,27 +1,33 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
-
 import 'package:app_projeto_cardapio/model/cardapio.dart';
 import 'package:app_projeto_cardapio/service/cardapio_service.dart';
 import 'package:flutter/material.dart';
 
-class DetalhesView extends StatelessWidget {
+class DetalhesView extends StatefulWidget {
   final MenuItem menuItem;
   final Cart cart;
 
   DetalhesView({required this.menuItem, required this.cart});
 
   @override
+  _DetalhesViewState createState() => _DetalhesViewState();
+}
+
+class _DetalhesViewState extends State<DetalhesView> {
+  int quantidade = 1; // Quantidade padrão inicial como 1
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(menuItem.name, style: TextStyle(color: Colors.white)),
+        title: Text(widget.menuItem.name, style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 96, 28, 16),
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/images/cor.jpeg'), // Imagem de fundo
+            image: AssetImage('lib/images/cor.jpeg'), 
             fit: BoxFit.cover,
           ),
         ),
@@ -30,8 +36,8 @@ class DetalhesView extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Centraliza verticalmente
-                crossAxisAlignment: CrossAxisAlignment.center, // Centraliza horizontalmente
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Imagem do item
                   Card(
@@ -43,7 +49,7 @@ class DetalhesView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        menuItem.imagem,
+                        widget.menuItem.imagem,
                         height: 300,
                         fit: BoxFit.cover,
                       ),
@@ -53,10 +59,10 @@ class DetalhesView extends StatelessWidget {
 
                   // Descrição
                   Text(
-                    menuItem.description,
+                    widget.menuItem.description,
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.white, // Contraste para o fundo
+                      color: Colors.white,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -64,12 +70,42 @@ class DetalhesView extends StatelessWidget {
 
                   // Preço
                   Text(
-                    'Preço: R\$ ${menuItem.price.toStringAsFixed(2)}',
+                    'Preço: R\$ ${widget.menuItem.price.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
+                  ),
+                  SizedBox(height: 20),
+
+                  // Ajuste da quantidade
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            if (quantidade > 1) quantidade--;
+                          });
+                        },
+                        icon: Icon(Icons.remove_circle),
+                        color: const Color.fromARGB(255, 96, 28, 16),
+                      ),
+                      Text(
+                        quantidade.toString(),
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            quantidade++;
+                          });
+                        },
+                        icon: Icon(Icons.add_circle),
+                        color: const Color.fromARGB(255, 96, 28, 16),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 20),
 
@@ -80,10 +116,13 @@ class DetalhesView extends StatelessWidget {
                       backgroundColor: const Color.fromARGB(255, 96, 28, 16),
                     ),
                     onPressed: () {
-                      cart.addItem(menuItem);
+                      for (int i = 0; i < quantidade; i++) {
+                        widget.cart.addItem(widget.menuItem);
+                      }
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('${menuItem.name} adicionado ao carrinho!'),
+                          content: Text(
+                              '${widget.menuItem.name} adicionado ao carrinho com quantidade $quantidade'),
                         ),
                       );
                     },

@@ -72,6 +72,7 @@ class LanchesView extends StatelessWidget {
                 'R\$ ${item.price.toStringAsFixed(2)}',
                 style: TextStyle(color: Colors.black54),
               ),
+              
               onTap: () {
                 Navigator.push(
                   context,

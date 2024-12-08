@@ -143,6 +143,7 @@ class _Login_AppState extends State<Login_App> {
 
                       // Chama o método de login
                       LoginController().login(context, email, senha);
+                      LoginController().idUsuario();
                     },
                     child: Text(
                       'Entrar',

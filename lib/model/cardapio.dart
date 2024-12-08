@@ -5,6 +5,7 @@ class MenuItem {
   final String description;
   final bool ativo;
   final String categoria;
+  int quantidade;
 
   // Construtor nomeado
   MenuItem({
@@ -14,6 +15,7 @@ class MenuItem {
     required this.description,
     required this.ativo,
     required this.categoria,
+    this.quantidade = 1,
   });
 
   // Função para converter de Map para MenuItem

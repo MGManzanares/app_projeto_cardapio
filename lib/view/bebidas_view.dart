@@ -64,7 +64,8 @@ class BebidasView extends StatelessWidget {
             child: ListTile(
               leading: Image.asset(item.imagem, height: 100, width: 100, fit: BoxFit.cover),
               title: Text(item.name, style: TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text('R\$ ${item.price.toStringAsFixed(2)}', style: TextStyle(color: Colors.black54)),
+              subtitle: Text('R\$ ${item.price.toStringAsFixed(2)}',
+               style: TextStyle(color: Colors.black54)),
               onTap: () {
                 Navigator.push(
                   context,

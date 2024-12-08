@@ -80,8 +80,7 @@ class _CadastrarViewState extends State<CadastrarView> {
                           if (txtNome.text.isEmpty ||
                               txtEmail.text.isEmpty ||
                               txtSenha.text.isEmpty ||
-                              txtEndereco.text.isEmpty ||
-                              txtTelefone.text.isEmpty) {
+                              txtEndereco.text.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text('Preencha todos os campos!'),
