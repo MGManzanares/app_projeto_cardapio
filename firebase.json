@@ -1,1 +1,29 @@
-{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"cardapio-ebdd6","configurations":{"ios":"1:493513065809:ios:10cf644d3d72f84e14ff70","web":"1:493513065809:web:16088f19ef63c1d314ff70"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "cardapio-ebdd6",
+          "configurations": {
+            "ios": "1:493513065809:ios:10cf644d3d72f84e14ff70",
+            "web": "1:493513065809:web:16088f19ef63c1d314ff70"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
