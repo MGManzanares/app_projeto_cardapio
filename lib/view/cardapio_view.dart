@@ -42,6 +42,13 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
+          IconButton(
+            icon: Icon(Icons.logout, color: Colors.white),
+            onPressed: () {
+              // Exibe um diálogo de confirmação para logout
+              _showLogoutDialog(context);
+            },
+          ),
         ],
       ),
       body: Container(
@@ -97,6 +104,33 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout'),
+          content: Text('Você deseja realmente sair?'),
+          actions: [
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Fecha o diálogo
+              },
+            ),
+            TextButton(
+              child: Text('Sair'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Fecha o diálogo
+                Navigator.of(context).pushReplacementNamed('/'); // Redireciona para a tela inicial
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
